@@ -3,15 +3,13 @@ import { create } from 'zustand'
 const useTestStore = create((set, get) => ({
   currentTest: null,
   answers: {},          // question_id -> answer string
-  timeRemaining: null,  // seconds
   status: 'idle',       // idle | loading | in_progress | submitted | evaluated
 
   setTest: (test) => set({ currentTest: test, answers: {}, status: 'in_progress' }),
   setAnswer: (questionId, value) =>
     set((state) => ({ answers: { ...state.answers, [questionId]: value } })),
-  setTimeRemaining: (secs) => set({ timeRemaining: secs }),
   setStatus: (status) => set({ status }),
-  resetTest: () => set({ currentTest: null, answers: {}, timeRemaining: null, status: 'idle' }),
+  resetTest: () => set({ currentTest: null, answers: {}, status: 'idle' }),
 
   getAnsweredCount: () => {
     const answers = get().answers
