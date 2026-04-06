@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: boardai-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        sync: false          # Set this in Render dashboard (Supabase PostgreSQL URL)
+      - key: GEMINI_API_KEY
+        sync: false          # Set this in Render dashboard
+      - key: CORS_ORIGINS
+        sync: false          # Set to your Netlify URL e.g. https://boardai.netlify.app
+      - key: CHROMA_PERSIST_DIR
+        value: ./chroma_data
+      - key: UPLOAD_DIR
+        value: ./uploads
+      - key: PDF_OUTPUT_DIR
+        value: ./generated_pdfs
+      - key: MAX_UPLOAD_SIZE_MB
+        value: "10"
+      - key: PYTHON_VERSION
+        value: "3.11.0"

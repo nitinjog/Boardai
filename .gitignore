@@ -1,0 +1,32 @@
+# Environment variables — NEVER commit real keys
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+*.db
+*.sqlite
+*.sqlite3
+
+# ChromaDB & uploads
+backend/chroma_data/
+backend/uploads/
+backend/generated_pdfs/
+
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
