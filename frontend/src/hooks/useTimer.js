@@ -5,12 +5,12 @@ export function useTimer(initialSeconds, onExpire) {
   const { timeRemaining, setTimeRemaining } = useTestStore()
   const intervalRef = useRef(null)
 
-  // Initialise only once
+  // Initialise when duration becomes available (API may load after mount)
   useEffect(() => {
     if (timeRemaining === null && initialSeconds > 0) {
       setTimeRemaining(initialSeconds)
     }
-  }, []) // eslint-disable-line
+  }, [initialSeconds]) // eslint-disable-line
 
   useEffect(() => {
     if (timeRemaining === null) return
